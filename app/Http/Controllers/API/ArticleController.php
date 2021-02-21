@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
  use App\Http\Resources\ArticleResource;
  use App\Models\API\Article;
  use Validator;
+ use App\Exports\ExportArticles;
+ use Maatwebsite\Excel\Facades\Excel;
 class ArticleController extends Controller
 {
     /**
@@ -143,5 +145,9 @@ class ArticleController extends Controller
         return response()->json([
             'message'=> 'Article '. $article->id . ' has successfully deleted'
         ]);
+    }
+
+    public function exportArticle(){
+        return Excel::download(new ExportArticles, 'articles.xlsx');
     }
 }
