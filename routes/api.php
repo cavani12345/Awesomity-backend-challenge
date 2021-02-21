@@ -22,6 +22,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('register', [App\Http\Controllers\API\RegisterLoginController::class, 'register']);
 Route::post('login', [App\Http\Controllers\API\RegisterLoginController::class, 'login']);
 
-Route::middleware('auth:sanctum')->group( function () {
+
     Route::resource('articles', ArticleController::class);
-});
+

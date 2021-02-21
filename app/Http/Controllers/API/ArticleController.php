@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
  use App\Http\Resources\ArticleResource;
  use App\Models\API\Article;
-
+ use Validator;
 class ArticleController extends Controller
 {
     /**
@@ -14,9 +14,26 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if($request->has('user_id')){
+            $article = Article::where('user_id',$request->user_id)->get();
+            return response()->json(ArticleResource::collection($article)); 
+        }
+        if($request->has('created_at')){
+            $article = Article::whereDate('created_at',$request->created_at)->get();
+            return response()->json(ArticleResource::collection($article));
+        }
+        if($request->has('priority')){
+            $article = Article::where('priority',$request->priority)->get();
+            return response()->json(ArticleResource::collection($article));
+        }
+        // read all articles
+        else{
+         $article = Article::all();
+         return response()->json(ArticleResource::collection($article)); 
+        }
+         
     }
 
     /**
@@ -26,9 +43,22 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        // create new article
+    {       
+        // valiadate
+        $validator = Validator::make($request->all(), [
+            'Title' => 'required',
+            'Description' => 'required',
+            'Priority' => 'required',
+        ]);
+        if($validator->fails()){
+         return response()->json([
+             'ErrorMessage'=> 'Validation Error'. $validator->errors()
+         ]);
+        }
+        else{
+
         $article = new Article ();
+
         $article->user_id = auth()->user()->id;
         $article->Title = $request->Title;
         $article->Description = $request->Description;
@@ -39,6 +69,10 @@ class ArticleController extends Controller
             'data'=> new ArticleResource($article),
             'message'=>'Article has been added successfully'
         ]);
+
+        }
+        // create new article
+        
     }
 
     /**
@@ -47,31 +81,5 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }

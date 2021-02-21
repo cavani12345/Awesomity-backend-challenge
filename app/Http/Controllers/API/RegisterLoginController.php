@@ -22,7 +22,7 @@ class RegisterLoginController extends Controller
 
         if($validator->fails()){
             return response()->json([
-                'message' => 'Validation error'.$validator->errors()
+                'ErrorMessage' => 'Validation error'.$validator->errors()
             ]);   
         }
             else{
@@ -51,7 +51,7 @@ class RegisterLoginController extends Controller
         ]);
         if($validator->fails()){
             return response()->json([
-                'message' => 'Validation error'.$validator->errors()
+                'ErrorMessage' => 'Validation error'.$validator->errors()
             ]);
         }
         else{
