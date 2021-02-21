@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,5 @@ Route::post('register', [App\Http\Controllers\API\RegisterLoginController::class
 Route::post('login', [App\Http\Controllers\API\RegisterLoginController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group( function () {
-    Route::resource('todoitems', TodoItemsController::class);
+    Route::resource('articles', ArticleController::class);
 });

@@ -15,25 +15,33 @@ class RegisterLoginController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'password' => 'required',
-            'c_password' => 'required|same:password',
+            'confirm_password' => 'required|same:password'
         ]);
-   
-        $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $input['email_verified_at'] = now();
-        $user = User::create($input);
-        $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-        $success['name'] =  $user->name;
-         
-        $response = [
-            'success'=> true,
-            'data'=> $success,
-            'message'=> 'User has been registered sucessfully',
-        ];
 
-        return response()->json($response,200);
+        if($validator->fails()){
+            return response()->json([
+                'message' => 'Validation error'.$validator->errors()
+            ]);   
+        }
+            else{
+                $input = $request->except('confirm_password');
+                $input['password'] = bcrypt($input['password']);
+                $input['email_verified_at'] = now();
+                $user = User::create($input);
+                $success['token'] =  $user->createToken('MyApp')->plainTextToken;
+                $success['name'] =  $user->name;
+                 
+                $response = [
+                    'success'=> true,
+                    'data'=> $success,
+                    'message'=> 'User has been registered sucessfully',
+                ];
+        
+                return response()->json($response,200);
+            }
+           
     }
 
     public function login(Request $request){
@@ -41,26 +49,34 @@ class RegisterLoginController extends Controller
             'email' => 'required|email',
             'password'=> 'required',
         ]);
-        
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
-            $user = Auth::user(); 
-            $success['token'] =  $user->createToken('MyApp')->plainTextToken; 
-            $success['name'] =  $user->name;
-
-            $response = [
-                'success'=>true,
-                'data'=>$success,
-                'message' => 'User has been sucessfully login',
-            ];
-            return response()->json($response,200);
+        if($validator->fails()){
+            return response()->json([
+                'message' => 'Validation error'.$validator->errors()
+            ]);
         }
         else{
-            $response = [
-                'success'=>false,
-                'message' => 'Username or Password is incorrect',
-            ];
-            return response()->json($response,404);
+            if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
+                $user = Auth::user(); 
+                $success['token'] =  $user->createToken('MyApp')->plainTextToken; 
+                $success['name'] =  $user->name;
+    
+                $response = [
+                    'success'=>true,
+                    'data'=>$success,
+                    'message' => 'User has been sucessfully login',
+                ];
+                return response()->json($response,200);
+            }
+            else{
+                $response = [
+                    'success'=>false,
+                    'message' => 'Username or Password is incorrect',
+                ];
+                return response()->json($response,404);
+            }
         }
+        
+        
 
     }
 }
