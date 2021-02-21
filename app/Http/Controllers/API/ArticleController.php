@@ -102,7 +102,34 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(),[
+            'Title'=>'required',
+            'Description'=>'required',
+            'Priority'=>'required'
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                'ErrorMessage'=>'Validation'.$validator->errors()
+            ]);   
+        }
+        else{
+            $article = Article::find($id);
+
+            $article->Title = $request->Title;
+            $article->Description = $request->Description;
+            $article->Priority = $request->Priority;
+            $article->save();
+
+            return response()->json([
+                'message'=> 'Article '.$article->id.' has successfully updated',
+                'update' => new ArticleResource($article)
+            ]);
+        }
+        
+    }
+
     /**
      * Remove the specified resource from storage.
      *
