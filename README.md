@@ -60,6 +60,8 @@ following step to do so.
 If php artisan l5-swagger: generate, throw an error saying that undefined offset 0 . You are requested to update your composer to the newer version this can be accomplished by running
 the following command.
 - composer update
+
+
 Run the following command to start development server
 - php artisan serve 
 
@@ -90,9 +92,7 @@ Run the following command to start development server
 
 ## Author 
 EDISON NGIZWENAYO <a href="edisonwacavan2015@gmail.com">edisonwacavan2015@gmail.com</a>
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 
 
