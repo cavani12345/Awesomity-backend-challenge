@@ -1,5 +1,5 @@
 
-# Articles and Athentication API
+# Articles and Authentication API
 
 this  project is made of articles and authentication api and was developed using Laravel 8
  
@@ -44,7 +44,7 @@ Make sure that you have cloned this Repo to your local machine
 
 #### Database configuration
 
-Here we will be creating and database then migrate all table present, consider the 
+Here we will be creating database then migrate all migrations which are present, consider the 
 following step to do so. 
 
 - create database called articles_db.
@@ -52,8 +52,8 @@ following step to do so.
 
 
 After migrating your migration you database will be filled with empty tables,
-And you are requested to make Post request first for creating new article by 
-Providing Title, Description and Priority. And make sure also you are authenticated.
+And you are requested to make Post request first for creating new article with endpoint POST /api/articles. Then
+Provide Title, Description and Priority. And make sure also you are authenticated.
 To implement authentication you need first to make POST /api/register to create new
 Account, then make POST /api/login to login into the system by providing
 email and password used during registration. After login into the system an authentication token
@@ -77,7 +77,7 @@ Run the following command to start development server
 ## API endpoints with authentication
 
 Remember that database tables contains no data,therefore you are highly recommended
-To request for POST/api/articles for creating new record in the article table and make sure 
+To request for POST/api/articles at the starting for creating new record in the article table and make sure 
 You are authenticated. These endpoints can be accessed only if you are authenticated.
 
 To access api of this project we need the following endpoints
@@ -93,10 +93,10 @@ To access api of this project we need the following endpoints
 
 ### Authentication api
 You are highly recommended to create account first, by requesting POST /api/register
-, then continue with login. After you are authenticated you are now allowed to 
+, then continue with login. After authentication is done ,you are now allowed to 
 Request for articles api.
 
-The following are authenticated endpoints
+The following are authentication endpoints
 
 - POST /api/register
 - POST /api/login
