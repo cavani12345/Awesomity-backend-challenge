@@ -76,9 +76,11 @@ Run the following command to start development server
 
 ## API endpoints with authentication
 
-Remember that database table contains no data,therefore you are highly recommended
-To request for POST/api/articles for creating new record in the database and make sure 
-You are authenticated. To access api of this project we need the following endpoints
+Remember that database tables contains no data,therefore you are highly recommended
+To request for POST/api/articles for creating new record in the article table and make sure 
+You are authenticated. These endpoints can be accessed only if you are authenticated.
+
+To access api of this project we need the following endpoints
 
  ### Articles api
  - GET /api/articles
