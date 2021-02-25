@@ -12,9 +12,9 @@ this  project is made of articles and authentication api and was developed using
 
 ## Articles features 
  
- once user is authentication that person will be allowed to perform the following, unless 
+ once user is authenticated that person will be allowed to request for article api endpoints, unless 
  system will not grant permission to access api. the following action will be performed 
- on article. 
+ on article. Make sure you are authenticated before requesting for articles api endpoints.
 
 - read all articles.
 - create new article.
@@ -27,11 +27,11 @@ this  project is made of articles and authentication api and was developed using
 
 ## Getting Started
 
-To get started with this app you have to follow all instruction below carefully and implement.
+To get started with this app you have to follow all instruction below carefully and implement them.
 
 ### Prerequisites
 First all of, Install the softwares on your local machine
-- download and install composer ( php dependency manager).
+- download and install latest versiin of composer ( php dependency manager).
 - download and install node js.
 - install git 
 
@@ -51,13 +51,13 @@ following step to do so.
 - then run  php artisan migrate.
 
 
-After migrating your migration you database will be filled with empty tables,
+After migrating your migrations you database will be filled with empty tables,
 And you are requested to make Post request first for creating new article with endpoint POST /api/articles. Then
-Provide Title, Description and Priority. And make sure also you are authenticated.
+Provide Title, Description and Priority. And make sure that you are authenticated before requesting for articles api endpoints.
 To implement authentication you need first to make POST /api/register to create new
 Account, then make POST /api/login to login into the system by providing
 email and password used during registration. After login into the system an authentication token
-Will be generated, therefore you are allowed to make any other requedt
+Will be generated, therefore you are allowed to make any other request.
 
  #### Scripts to use
 
@@ -66,7 +66,7 @@ Will be generated, therefore you are allowed to make any other requedt
  - php artisan l5-swagger:generate
  generated swagger ui can be accessed via <a href="http://127.0.0.1:8000/api/documentation">Swagger ui</a>
 
-If php artisan l5-swagger: generate, throw an error saying that undefined offset 0 . You are requested to update your composer to the newer version this can be accomplished by running
+If php artisan l5-swagger:generate ,throw an error saying that undefined offset 0 . You are requested to update your composer to the newer version this can be accomplished by running
 the following command.
 - composer update
 
@@ -93,8 +93,8 @@ To access api of this project we need the following endpoints
 
 ### Authentication api
 You are highly recommended to create account first, by requesting POST /api/register
-, then continue with login. After authentication is done ,you are now allowed to 
-Request for articles api.
+, then continue with login via POST /api/login. After authentication is done ,you are now allowed to 
+Request for articles api endpoints.
 
 The following are authentication endpoints
 
