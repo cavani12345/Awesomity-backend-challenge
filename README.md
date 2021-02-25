@@ -75,7 +75,10 @@ Run the following command to start development server
 - php artisan serve 
 
 ## API endpoints with authentication
- to access api of this projetc we need the following endpoints
+
+Remember that database table contains no data,therefore you are highly recommended
+To request for POST/api/articles for creating new record in the database and make sure 
+You are authenticated. To access api of this project we need the following endpoints
 
  ### Articles api
  - GET /api/articles
@@ -87,6 +90,12 @@ Run the following command to start development server
 - GET /api/search
 
 ### Authentication api
+You are highly recommended to create account first, by requesting POST /api/register
+, then continue with login. After you are authenticated you are now allowed to 
+Request for articles api.
+
+The following are authenticated endpoints
+
 - POST /api/register
 - POST /api/login
 - POST /api/logout
