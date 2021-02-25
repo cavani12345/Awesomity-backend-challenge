@@ -21,8 +21,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register', [App\Http\Controllers\API\RegisterLoginController::class, 'register']);
 Route::post('login', [App\Http\Controllers\API\RegisterLoginController::class, 'login']);
-Route::get('export', [ArticleController::class, 'exportArticle'])->name('export');
-Route::middleware('auth:sanctum')->group( function () {
-    
-    Route::resource('articles', ArticleController::class);
-});
+Route::post('logout', [App\Http\Controllers\API\RegisterLoginController::class, 'logout']);
+Route::get('export', [App\Http\Controllers\API\ArticleController::class, 'exportArticle'])->name('export');
+Route::get('search', [App\Http\Controllers\API\ArticleController::class,'search']);
+
+
+    Route::middleware('auth:sanctum')->group( function () {
+        Route::resource('articles', ArticleController::class);
+    });

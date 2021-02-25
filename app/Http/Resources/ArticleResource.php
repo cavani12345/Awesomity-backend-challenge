@@ -4,6 +4,17 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @OA\Schema(
+ *     title="ArticleResource",
+ *     description="Article resource",
+ *     @OA\Xml(
+ *         name="ArticleResource"
+ *     )
+ * )
+ */
+
+ 
 class ArticleResource extends JsonResource
 {
     /**
@@ -12,6 +23,17 @@ class ArticleResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
+
+      /**
+     * @OA\Property(
+     *     title="Data",
+     *     description="Data wrapper"
+     * )
+     *
+     * @var \App\\Models\API\Article
+     */
+     private $data;
+
     public function toArray($request)
     {
         return [
