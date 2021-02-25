@@ -50,6 +50,15 @@ following step to do so.
 - create database called articles_db.
 - then run  php artisan migrate.
 
+
+After migrating your migration you database will be filled with empty tables,
+And you are requested to make Post request first for creating new article by 
+Providing Title, Description and Priority. And make sure also you are authenticated.
+To implement authentication you need first to make POST /api/register to create new
+Account, then make POST /api/login to login into the system by providing
+email and password used during registration. After login into the system an authentication token
+Will be generated, therefore you are allowed to make any other requedt
+
  #### Scripts to use
 
  Generate swagger ui and start development server, consider the following step
