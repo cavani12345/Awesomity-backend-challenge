@@ -31,7 +31,7 @@ To get started with this app you have to follow all instruction below carefully 
 
 ### Prerequisites
 First all of, Install the softwares on your local machine
-- download and install latest versiin of composer ( php dependency manager).
+- download and install latest version of composer ( php dependency manager).
 - download and install node js.
 - install git 
 
@@ -64,6 +64,7 @@ Will be generated, therefore you are allowed to make any other request.
  Generate swagger ui and start development server, consider the following step
  Run the following command to generate l5-swagger UI 
  - php artisan l5-swagger:generate
+
  generated swagger ui can be accessed via <a href="http://127.0.0.1:8000/api/documentation">Swagger ui</a>
 
 If php artisan l5-swagger:generate ,throw an error saying that undefined offset 0 . You are requested to update your composer to the newer version this can be accomplished by running
