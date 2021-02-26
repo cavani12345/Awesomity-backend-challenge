@@ -65,7 +65,7 @@ Will be generated, therefore you are allowed to make any other request.
  Run the following command to generate l5-swagger UI 
  - php artisan l5-swagger:generate
 
- generated swagger ui can be accessed via <a href="http://127.0.0.1:8000/api/documentation">Swagger ui</a>
+ generated swagger ui can be accessed at this endpoint  /api/documentation
 
 If php artisan l5-swagger:generate ,throw an error saying that undefined offset 0 . You are requested to update your composer to the newer version this can be accomplished by running
 the following command.
