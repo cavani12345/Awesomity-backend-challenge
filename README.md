@@ -75,6 +75,9 @@ the following command.
 Run the following command to start development server
 - php artisan serve 
 
+Before running php artisan serve make sure apache and mysql server
+Are also running.
+
 ## API endpoints with authentication
 
 Remember that database tables contains no data,therefore you are highly recommended
